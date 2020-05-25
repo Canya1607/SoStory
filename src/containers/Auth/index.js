@@ -1,18 +1,33 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Image } from 'react-native';
 import TextInput from '../../components/TextInput'
 import Button from '../../components/Button';
+import { setUsername } from '../../services/storage';
 import styles from './styles';
 
 class Auth extends React.Component {
+  state = {
+    userName: ''
+  }
+
+  _continue = async () => {
+    const success = await setUsername(this.state.userName);
+    if (success) {
+      this.props.route.params.setLogined(true)
+    }
+  }
+
   render() {
+    const { userName } = this.state;
     return (
       <View style={styles.container}>
-        <TextInput value={null} placeholder="Login" />
-        <TextInput value={null} placeholder="Password" />
+        <Image source={require('../../assets/images/logo.png')} style={{width: 200, height: 200}} />
+        <TextInput style={styles.input} value={userName} placeholder="Your name" onChangeText={(text) => this.setState({userName: text})} />
         <Button
-          title="To Main"
-          onPress={() => this.props.navigation.navigate('Main')}
+          style={styles.button}
+          title="Continue"
+          // onPress={() => this.props.navigation.navigate('Main')}
+          onPress={this._continue}
         />
       </View>
     );

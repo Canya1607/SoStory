@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableWithoutFeedback, TextInput, Image, Alert } from 'react-native';
+import { View, Text, ScrollView, TouchableWithoutFeedback, TextInput, Image, Alert, KeyboardAvoidingView } from 'react-native';
 import { DotsLoader } from 'react-native-indicator'; 
 import { Height, Width, send_png } from '../../constants'
 import styles from './styles';
@@ -8,7 +8,7 @@ class Main extends React.Component {
   state = {
     input: '',
     data: [
-      'I like Hitler. I am white',
+      'I love people. I am white',
       'Hi guys. Like girls. Like boys',
       'Sipmple six words needed to write',
       'Sky is blue. Sun is red',
@@ -69,7 +69,7 @@ class Main extends React.Component {
   render() {
     const { input } = this.state
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={40}>
         <Text style={styles.textLogo}>- So Story -</Text>
         <View style={styles.dotsLoaderContainer}>
           <DotsLoader size={12} color="#000" betweenSpace={7} />
@@ -89,7 +89,7 @@ class Main extends React.Component {
             <Image source={send_png} style={styles.sendIcon}/>
           </TouchableWithoutFeedback>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

@@ -5,7 +5,7 @@ import AppContainer from './routes';
 class App extends React.Component {
   render() {
     return (
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
         <AppContainer />
       </SafeAreaView>
     );
