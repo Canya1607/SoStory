@@ -63,12 +63,56 @@ export async function getStories() {
   }
 }
 
-export async function setStory(story) {
+export async function getStoriesByName(username) {
   try {
     const stories = await getStories();
-    stories.push(story);
+    const personalStories = stories.filter(value => value.username === username);
+    return personalStories;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function setStory(username, story) {
+  try {
+    const stories = await getStories();
+    stories.push({username, story});
     await AsyncStorage.setItem('stories', JSON.stringify(stories));
   } catch (error) {
     console.log(error);
+  }
+}
+
+export async function setOwnStory(story) {
+  try {
+    const username = await getUsername();
+    const stories = await getStories();
+    stories.push({username, story});
+    await AsyncStorage.setItem('stories', JSON.stringify(stories));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getLastThreeStories() {
+  try {
+    const username = await getUsername();
+    const stories = await getStoriesByName(username);
+    if (stories.length <= 3) {
+      return stories;
+    } else {
+      return stories.slice(stories.length - 3);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//
+export async function clearStorage() {
+  try {
+    await AsyncStorage.clear();
+  } catch (e) {
+    console.log(e);
   }
 }

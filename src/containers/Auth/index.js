@@ -21,7 +21,7 @@ class Auth extends React.Component {
     const { userName } = this.state;
     return (
       <View style={styles.container}>
-        <Image source={require('../../assets/images/logo.png')} style={{width: 200, height: 200}} />
+        <Image source={require('../../assets/images/logo.jpg')} style={{width: 200, height: 200}} />
         <TextInput style={styles.input} value={userName} placeholder="Your name" onChangeText={(text) => this.setState({userName: text})} />
         <Button
           style={styles.button}

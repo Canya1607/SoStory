@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
     paddingBottom: Height * 0.01
   },
   avatar: {
-    width: Height * 0.24,
-    height: Height * 0.24,
-    borderRadius: Height * 0.125
+    width: Height * 0.20,
+    height: Height * 0.20,
+    borderRadius: Height * 0.1
   },
   usernameContainer: {
     paddingVertical: Height * 0.01
